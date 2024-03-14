@@ -18,9 +18,9 @@ public class Ball : MonoBehaviour{
         
     }
 
-    float HitFactor(Vector2 ball, Vector2 player, float playerWidth){
+    float HitFactor(Vector2 Ball, Vector2 player, float playerWidth){
         //-1 -0.5 0 0.5 1
-        return(ball.x - player.x) / playerWidth;
+        return(Ball.x - player.x) / playerWidth;
 
     }
 
