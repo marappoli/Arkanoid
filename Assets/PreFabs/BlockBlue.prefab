@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 895025931578067758}
   m_Layer: 0
   m_Name: BlockBlue
-  m_TagString: Untagged
+  m_TagString: BlockBlue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

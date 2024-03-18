@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour{
     [SerializeField]
-    private float speed = 100f;
+    private float speed = 200f;
     private Rigidbody2D body;
     // Start is called before the first frame update
     void Start(){
-        body = GetComponent<Rigidbody2D>();
-        body.velocity = Vector2.up * speed;
         
     }
 
     // Update is called once per frame
     void Update(){
         
+    }
+
+    public void StartBall(){
+        body = GetComponent<Rigidbody2D>();
+        body.velocity = Vector2.up * speed;
     }
 
     float HitFactor(Vector2 Ball, Vector2 player, float playerWidth){
@@ -39,8 +42,11 @@ public class Ball : MonoBehaviour{
 
             //velocidade da bola
             body.velocity = dir * speed;
+        }
 
-
+        if(col.gameObject.name == "GameOver"){
+            GameController.instance.LoadEndGame(GameState.GameOver);
+            // Destroy(gameObject);
 
         }
 
