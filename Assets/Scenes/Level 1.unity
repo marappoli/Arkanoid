@@ -909,8 +909,6 @@ MonoBehaviour:
   - {fileID: 8234942160947648520, guid: 80f93aad8e17cc146b6778f1d00036ee, type: 3}
   - {fileID: 7069324702667409080, guid: 11321425465139b439e548d5e69c98f4, type: 3}
   - {fileID: 7254581620527038134, guid: aa54bad1a51218a43ac4e9eda4460224, type: 3}
-  - {fileID: 3908812544900917662, guid: 028889af7f2adfd419e6f61a416f5a61, type: 3}
-  - {fileID: 4368902697317110642, guid: a0d4f769cd5ae6942a3cb366c8f84fbc, type: 3}
 --- !u!4 &1474361902
 Transform:
   m_ObjectHideFlags: 0
@@ -1172,6 +1170,7 @@ MonoBehaviour:
   Ball: {fileID: 1545191010}
   Player: {fileID: 1843344950}
   gameState: 0
+  currentLevel: 1
 --- !u!4 &2083335095
 Transform:
   m_ObjectHideFlags: 0

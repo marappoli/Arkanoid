@@ -7,11 +7,11 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public enum GameState { Stop, Play, Win, GameOver, Pause };
+public enum GameState2 { Stop, Play, Win, GameOver, Pause };
 
-public class GameController : MonoBehaviour{
+public class GameController2 : MonoBehaviour{
 
-    public static GameController instance;
+    public static GameController2 instance;
 
     [SerializeField]
     TextMeshProUGUI txtScore;
@@ -20,15 +20,17 @@ public class GameController : MonoBehaviour{
     TextMeshProUGUI txtMsg;
 
     [SerializeField]
-    private GameObject Ball;
+    private GameObject Ball2;
 
     [SerializeField]
     private GameObject Player;
 
     private float score;
-    public GameState gameState;
+    public GameState2 gameState;
 
     public int currentLevel = 1;
+
+    public float delay = 2f;
 
     private void Awake(){
 
@@ -43,7 +45,7 @@ public class GameController : MonoBehaviour{
     }
     // Start is called before the first frame update
     void Start(){
-        gameState = GameState.Stop;
+        gameState = GameState2.Stop;
         //StartGame();
         
     }
@@ -51,16 +53,16 @@ public class GameController : MonoBehaviour{
     // Update is called once per frame
     void Update(){
         txtScore.text = "Score: " +this.score;
-        if(Input.GetKeyUp(KeyCode.Space) && gameState == GameState.Stop){
+        if(Input.GetKeyUp(KeyCode.Space) && gameState == GameState2.Stop){
             StartGame();
         }
 
-        if(BlockController.instance.GetTlBlocks() <= 0 && gameState == GameState.Play){
-            LoadEndGame(GameState.Win);
+        if(BlockController2.instance.GetTlBlocks() <= 0 && gameState == GameState2.Play){
+            LoadEndGame(GameState2.Win);
         }
 
-        if(Input.GetKeyDown(KeyCode.Space) && gameState == GameState.Play 
-        || Input.GetKeyDown(KeyCode.Space) && gameState == GameState.Pause){
+        if(Input.GetKeyDown(KeyCode.Space) && gameState == GameState2.Play 
+        || Input.GetKeyDown(KeyCode.Space) && gameState == GameState2.Pause){
             PauseGame();
         }
     }
@@ -70,26 +72,26 @@ public class GameController : MonoBehaviour{
     }
 
     public void StartGame(){
-        gameState = GameState.Play;
+        gameState = GameState2.Play;
         score = 0;
-        Ball.GetComponent<Ball>().StartBall();
+        Ball2.GetComponent<Ball2>().StartBall();
         txtMsg.gameObject.SetActive(false);
 
         //SceneManager.LoadScene("Level " + currentLevel);
     }
 
-    public void LoadEndGame(GameState valor){
+    public void LoadEndGame(GameState2 valor){
         gameState = valor;
         txtMsg.gameObject.SetActive(true);
-        if(gameState == GameState.GameOver){
+        if(gameState == GameState2.GameOver){
             txtMsg.text = "Game Over";
         }
         else{
             txtMsg.text = " ";
             LoadNextLevel();
         }
-        if(Ball != null){
-            Ball.SetActive(false);
+        if(Ball2 != null){
+            Ball2.SetActive(false);
         }
         Invoke("RestartGame", 5);
     }
@@ -100,12 +102,12 @@ public class GameController : MonoBehaviour{
 
     public void PauseGame(){
         if(Time.timeScale == 0){
-            gameState = GameState.Play;
+            gameState = GameState2.Play;
             Time.timeScale = 1;
             txtMsg.gameObject.SetActive(false);
         }
         else{
-            gameState = GameState.Pause;
+            gameState = GameState2.Pause;
             Time.timeScale = 0;
             txtMsg.gameObject.SetActive(true);
             txtMsg.text = "Pause \n Press space to continue";
@@ -113,9 +115,13 @@ public class GameController : MonoBehaviour{
         
     }
 
+    public void LoadNextScene(){
+        Invoke("LoadNextLevel", delay);
+    }
+
     public void LoadNextLevel(){
-        currentLevel++;
-        SceneManager.LoadScene("TransitionScene");
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene("WinScene");
     }
 
     

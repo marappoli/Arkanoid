@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockController : MonoBehaviour {
+public class BlockController2 : MonoBehaviour {
     [SerializeField]
     private GameObject[] blocks;
 
     private int tlBlocks;
 
-    public static BlockController instance;
+    public static BlockController2 instance;
     // Use this for initialization
     private void Awake(){
         if (instance == null){
@@ -41,7 +41,7 @@ public class BlockController : MonoBehaviour {
         tlBlocks = 0;
         // Instantiate(blocks[0], new Vector3(0, 10f, 0), Quaternion.identity);
         // tlBlocks++;
-        for (int i = 0; i < 2; i++){
+        for (int i = 0; i < 5; i++){
             px = -96f;
             for (int j = 0; j < 13; j++){
                 Vector3 pos = new Vector3(px, py, 0);
